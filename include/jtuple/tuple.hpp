@@ -1,4 +1,5 @@
 // Copyright (c) 2020, NVIDIA CORPORATION. All rights reserved.
+// Copyright (c) 2021, Florian Fervers. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -78,7 +79,7 @@
 
 TUPLE_NAMESPACE_OPEN_BRACE
 
-// first declare tuple 
+// first declare tuple
 template<class... Types> class tuple;
 
 TUPLE_NAMESPACE_CLOSE_BRACE
@@ -124,7 +125,7 @@ TUPLE_NAMESPACE_OPEN_BRACE
 namespace TUPLE_DETAIL_NAMESPACE
 {
 
-// define variadic "and" operator 
+// define variadic "and" operator
 template <typename... Conditions>
   struct tuple_and;
 
@@ -155,7 +156,7 @@ struct tuple_make_index_sequence_impl;
 template<size_t Start, size_t... Indices, size_t End>
 struct tuple_make_index_sequence_impl<
   Start,
-  tuple_index_sequence<Indices...>, 
+  tuple_index_sequence<Indices...>,
   End
 >
 {
@@ -257,7 +258,7 @@ class tuple_leaf_base<T,0>
     {
       return *reinterpret_cast<const T*>(this);
     }
-  
+
     TUPLE_ANNOTATION
     T& mutable_get()
     {
@@ -424,7 +425,7 @@ class tuple_leaf : public tuple_leaf_base<T>
              >::type>
     TUPLE_ANNOTATION
     tuple_leaf(const tuple_leaf<I,U>& other) : super_t(other.const_get()) {}
-    
+
     tuple_leaf& operator=(const tuple_leaf&) = default;
 
     tuple_leaf& operator=(tuple_leaf&&) = default;
@@ -1213,4 +1214,3 @@ TUPLE_NAMESPACE_CLOSE_BRACE
 #endif
 
 #undef TUPLE_EXEC_CHECK_DISABLE
-
